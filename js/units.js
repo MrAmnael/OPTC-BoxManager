@@ -1001,7 +1001,7 @@ const units = [
     image: baseImageUrl + "091.png",
     classes: ["Tenace", "Ravageur"],
     categorie: ["Sugo Fest - Premium"],
-    potentials: ["Augmentation d'ATK en cas de degats subis et de resistance au augmentations de degats", "EXSoin d'urgenceEMPLE", "Lien des cercles"]
+    potentials: ["Augmentation d'ATK en cas de degats subis et de resistance au augmentations de degats", "Soin d'urgence", "Lien des cercles"]
   },
   {
     id: 92,
