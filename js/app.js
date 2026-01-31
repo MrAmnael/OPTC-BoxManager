@@ -579,7 +579,7 @@ window.openSocketSelector = function(slotIndex) {
     const btn = document.createElement('div');
     btn.className = "cursor-pointer flex flex-col items-center hover:bg-gray-700 p-2 rounded transition border border-gray-600 hover:border-gray-400";
     btn.onclick = () => selectSocket(slotIndex, type);
-    btn.innerHTML = `<img src="/icons/Pouvoirs/${type}.png" class="w-10 h-10 object-contain" title="${type}">`;
+    btn.innerHTML = `<img src="./icons/Pouvoirs/${type}.png" class="w-10 h-10 object-contain" title="${type}">`;
     optionsContainer.appendChild(btn);
   });
 
@@ -588,7 +588,7 @@ window.openSocketSelector = function(slotIndex) {
 
 window.selectSocket = function(slotIndex, type) {
   document.getElementById(`mgr_sockType${slotIndex}`).value = type;
-  document.getElementById(`mgr_sockImg${slotIndex}`).src = `/icons/Pouvoirs/${type || 'vide'}.png`;
+  document.getElementById(`mgr_sockImg${slotIndex}`).src = `./icons/Pouvoirs/${type || 'vide'}.png`;
   const levelInput = document.getElementById(`mgr_sockLv${slotIndex}`);
   if(!type && levelInput) {
     levelInput.value = 0; // Reset niveau si vide
@@ -867,10 +867,10 @@ function openManagerModal(id) {
           ${[1,2,3,4,5].map(i => `
             <div class="flex flex-col items-center bg-gray-900 p-2 rounded border border-gray-700">
               <div class="relative w-10 h-10 mb-2 cursor-pointer hover:scale-110 transition" onclick="openSocketSelector(${i})">
-                <img src="/icons/Pouvoirs/${s[`socket${i}Type`] || 'vide'}.png" 
+                <img src="./icons/Pouvoirs/${s[`socket${i}Type`] || 'vide'}.png" 
                      id="mgr_sockImg${i}"
                      class="w-full h-full object-contain" 
-                     onerror="this.src='/icons/Pouvoirs/vide.png'">
+                     onerror="this.src='./icons/Pouvoirs/vide.png'">
               </div>
               <input type="hidden" id="mgr_sockType${i}" value="${s[`socket${i}Type`] || ''}">
               <div class="relative w-full">
