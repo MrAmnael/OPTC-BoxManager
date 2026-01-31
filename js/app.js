@@ -579,7 +579,7 @@ window.openSocketSelector = function(slotIndex) {
     const btn = document.createElement('div');
     btn.className = "cursor-pointer flex flex-col items-center hover:bg-gray-700 p-2 rounded transition border border-gray-600 hover:border-gray-400";
     btn.onclick = () => selectSocket(slotIndex, type);
-    btn.innerHTML = `<img src="icons/Pouvoirs/${type}.png" class="w-10 h-10 object-contain" title="${type}">`;
+    btn.innerHTML = `<img src="/icons/Pouvoirs/${type}.png" class="w-10 h-10 object-contain" title="${type}">`;
     optionsContainer.appendChild(btn);
   });
 
@@ -588,7 +588,7 @@ window.openSocketSelector = function(slotIndex) {
 
 window.selectSocket = function(slotIndex, type) {
   document.getElementById(`mgr_sockType${slotIndex}`).value = type;
-  document.getElementById(`mgr_sockImg${slotIndex}`).src = `icons/Pouvoirs/${type || 'vide'}.png`;
+  document.getElementById(`mgr_sockImg${slotIndex}`).src = `/icons/Pouvoirs/${type || 'vide'}.png`;
   const levelInput = document.getElementById(`mgr_sockLv${slotIndex}`);
   if(!type && levelInput) {
     levelInput.value = 0; // Reset niveau si vide
