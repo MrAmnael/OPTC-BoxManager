@@ -729,7 +729,7 @@ function openManagerModal(id) {
   const onInputMax = (max) => `oninput="if(parseInt(this.value) > ${max}) this.value = ${max}; this.style.color = (parseInt(this.value) >= ${max}) ? '#ffa500' : 'white'"`;
 
   // Script oninput spécifique pour le niveau
-  const onInputLevel = (max) => `oninput="if(parseInt(this.value) > ${max}) this.value = ${max}; this.style.color = (parseInt(this.value) === 150 ? '#ff0000' : (parseInt(this.value) >= ${max} ? '#ffa500' : 'white'))"`;
+  const getLevelInputCode = (max) => `if(parseInt(this.value) > ${max}) this.value = ${max}; this.style.color = (parseInt(this.value) === 150 ? '#ff0000' : (parseInt(this.value) >= ${max} ? '#ffa500' : 'white'))`;
 
   // Script spécifique pour mettre à jour le niveau max quand on change le LLB
   window.updateLevelMax = function(select) {
@@ -743,7 +743,7 @@ function openManagerModal(id) {
     lvlInput.style.color = getLevelColor(lvlInput.value, newMax);
     
     // Update de l'event oninput du niveau pour prendre en compte le nouveau max
-    lvlInput.setAttribute('oninput', onInputLevel(newMax));
+    lvlInput.setAttribute('oninput', getLevelInputCode(newMax));
   };
 
   const lbMilestones = [
@@ -843,7 +843,7 @@ function openManagerModal(id) {
           <div>
             <span class="manager-label">Niveau</span>
             <div class="relative">
-              <input type="number" id="mgr_level" value="${s.level || 1}" min="1" max="${currentMaxLv}" ${onInputLevel(currentMaxLv)} style="color: ${getLevelColor(s.level || 1, currentMaxLv)}" class="manager-input pr-12">
+              <input type="number" id="mgr_level" value="${s.level || 1}" min="1" max="${currentMaxLv}" oninput="${getLevelInputCode(currentMaxLv)}" style="color: ${getLevelColor(s.level || 1, currentMaxLv)}" class="manager-input pr-12">
             </div>
           </div>
           <div><span class="manager-label">Limit Break</span>
