@@ -449,9 +449,7 @@ body > * {
 /* ✅ Manager Modal */
 #managerModal {
   z-index: 200; /* Au-dessus de tout */
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  background-color: rgba(10, 10, 20, 0.7); /* Remplace le bg-opacity de Tailwind */
+  background-color: rgba(10, 10, 20, 0.8); /* Plus transparent pour voir l'arrière-plan */
 }
 
 /* ✅ Fixe le modal Filtres (Header/Footer fixes, Contenu scrollable) */
@@ -462,11 +460,11 @@ body > * {
 }
 
 .manager-content {
-  /* Nouveau style pour un look plus moderne */
-  background: radial-gradient(circle, #2c3e50, #1a242f) padding-box,
-              linear-gradient(145deg, #3b82f6, #8b5cf6) border-box;
-  border: 3px solid transparent;
-  box-shadow: 0 0 30px rgba(99, 102, 241, 0.4); /* Ombre indigo/violette */
+  /* Simplification pour performance PC : suppression des masques complexes */
+  background-color: #1f2937;
+  background: radial-gradient(circle at top, #2c3e50, #1a242f);
+  border: 2px solid #4f46e5;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 
   max-height: 90vh;
   overflow-y: auto;
