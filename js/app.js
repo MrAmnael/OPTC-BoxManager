@@ -101,8 +101,8 @@ if (artworkModal) {
 }
 
 // ✅ Mise à jour UI d'une carte
-function updateCardUI(id) {
-  const card = document.querySelector(`.unit-card[data-id="${id}"]`);
+function updateCardUI(id, cardElement = null) {
+  const card = cardElement || document.querySelector(`.unit-card[data-id="${id}"]`);
   if (!card) return;
   
   const currentState = currentView === "units" ? state : shipState;
@@ -313,6 +313,7 @@ function buildCards() {
     
     const img = document.createElement("img");
     img.src = item.image;
+    img.loading = "lazy";
     img.className = "mb-1 w-full";
     img.style.pointerEvents = "none";
     
@@ -354,7 +355,7 @@ function buildCards() {
     card.appendChild(badge);
     card.appendChild(overlay);
     container.appendChild(card);
-    updateCardUI(item.id);
+    updateCardUI(item.id, card);
   });
 }
 
@@ -427,7 +428,7 @@ function resetAll() {
     if (currentView === "units") state = {};
     else shipState = {};
     saveState();
-    document.querySelectorAll('.unit-card').forEach(card => updateCardUI(parseInt(card.dataset.id, 10)));
+    document.querySelectorAll('.unit-card').forEach(card => updateCardUI(parseInt(card.dataset.id, 10), card));
     applyFilters();
   }
 }
@@ -454,7 +455,7 @@ function importCollection() {
         state = imported; // Ancien format (juste les unités)
       }
       saveState();
-      document.querySelectorAll('.unit-card').forEach(card => updateCardUI(parseInt(card.dataset.id, 10)));
+      document.querySelectorAll('.unit-card').forEach(card => updateCardUI(parseInt(card.dataset.id, 10), card));
       applyFilters();
     };
     reader.readAsText(e.target.files[0]);
@@ -870,7 +871,7 @@ function openManagerModal(id) {
                 <img src="./icons/Pouvoirs/${s[`socket${i}Type`] || 'Vide'}.png" 
                      id="mgr_sockImg${i}"
                      class="w-full h-full object-contain" 
-                     onerror="this.src='./icons/Pouvoirs/Vide.png'">
+                     onerror="this.onerror=null; this.src='./icons/Pouvoirs/vide.png'">
               </div>
               <input type="hidden" id="mgr_sockType${i}" value="${s[`socket${i}Type`] || ''}">
               <div class="relative w-full">
@@ -1428,8 +1429,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // 4. Recherche
   const searchInput = document.getElementById("search-input");
+  let debounceTimer;
   if (searchInput) {
-    searchInput.addEventListener("input", e => { searchTerm = e.target.value; applyFilters(); });
+    searchInput.addEventListener("input", e => { 
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        searchTerm = e.target.value; 
+        applyFilters(); 
+      }, 300);
+    });
   }
 
   // 5. Système
