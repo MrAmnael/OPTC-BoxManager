@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="icons/ui/icon.png">
+  <link rel="shortcut icon" type="image/png" href="icons/ui/icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <title>OPTC Box Manager</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- html2canvas pour capture PNG -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <!-- Ton style principal -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="text-white min-h-screen">
+  <header id="main-header" class="sticky top-0 z-50 mb-6">
+    <div class="w-full px-4 py-2 relative">
+      <!-- Ligne 1 : Logo, Recherche, Boutons -->
+      <div class="header-grid-layout mb-2">
+        
+        <!-- Gauche : Logo + Recherche -->
+        <div class="flex items-center gap-4 justify-start">
+          <!-- Placeholder pour garder l'espace du logo en mode desktop sans agrandir le header -->
+          <div class="hidden md:block w-56 h-0"></div>
+          <!-- Logo "Cube" -->
+          <div class="header-logo border border-gray-600 rounded-xl w-20 h-20 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg shrink-0 md:absolute md:top-2 md:left-4 md:z-50 transition-all duration-300 relative">
+            <img id="icon-units" src="icons/ui/units.png" class="w-14 h-14 md:w-32 md:h-32 object-contain ml-1 md:mb-1 md:ml-4 md:relative md:-left-0.5 transition-all duration-300">
+            <img id="icon-ship" src="icons/ui/ship.png" class="hidden w-14 h-14 md:w-32 md:h-32 object-contain md:mb-5 md:mr-2 transition-all duration-300">
+            <span class="hidden md:block text-sm text-white uppercase tracking-widest absolute bottom-1 md:bottom-2">Box Manager</span>
+          </div>
+        </div>
+
+        <!-- Barre de recherche -->
+        <div class="flex justify-center px-4 w-full">
+          <input type="text" id="search-input" placeholder="🔍 Rechercher..." class="header-input w-full max-w-full h-10 md:h-12 text-base md:text-lg" />
+        </div>
+
+        <!-- Droite : Actions + Filtres -->
+        <div class="flex flex-row md:flex-col items-center md:items-end gap-2 justify-self-end">
+          <!-- Boutons d'action -->
+          <div class="flex flex-wrap justify-end items-center gap-2" id="actionButtonsContainer">
+            <div class="relative inline-block text-left">
+              <button id="dropdownMenuBtn" class="header-btn flex items-center gap-2">
+                <img src="icons/ui/Menu.png" class="w-5 h-5 object-contain" alt="Menu"> Menu
+              </button>
+              <div id="dropdownMenuContent" class="hidden absolute z-20 mt-2 w-48 rounded-lg shadow-lg bg-gray-700 ring-1 ring-black ring-opacity-5 right-0">
+                <div class="py-1 flex flex-col">
+                  <button onclick="exportCollection()" class="text-left px-4 py-2 text-sm text-white hover:bg-gray-600 w-full flex items-center gap-2">💾 Exporter</button>
+                  <button onclick="importCollection()" class="text-left px-4 py-2 text-sm text-white hover:bg-gray-600 w-full flex items-center gap-2">📥 Importer</button>
+                  <button onclick="resetAll()" class="text-left px-4 py-2 text-sm text-white hover:bg-gray-600 w-full flex items-center gap-2">🔄 Réinitialiser</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filtres -->
+          <div class="flex gap-2 items-center">
+            <!-- ✅ Nouveau Dropdown de Filtres Unifié -->
+            <div>
+              <button id="masterFilterBtn" onclick="openFilterModal()" class="header-btn flex items-center gap-2">
+                <img src="icons/ui/Filtres.png" class="w-5 h-5 object-contain" alt="Filtres"> Filtres
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ligne 1.5 : Boutons de mode centrés -->
+      <div class="flex flex-wrap justify-center items-center gap-2 mt-6 mb-5">
+        <div id="centered-mode-buttons" class="contents md:flex md:flex-wrap md:justify-center md:items-center md:gap-2">
+          <button onclick="setMode('manager')" class="mode-button btn-manager unit-mode-btn text-white px-3 py-1 rounded transition">Mode Manager</button>
+          <button onclick="setMode('simple')" class="mode-button btn-simple unit-mode-btn text-white px-3 py-1 rounded transition">Mode Reset</button>
+        </div>
+        <button id="toggleArtworkBtn" class="mode-button text-white px-3 py-1 rounded transition">Artwork OFF</button>
+        <!-- Bouton Bateaux (Mobile: Flow, Desktop: Absolute) -->
+        <button id="viewSwitchBtn" class="header-btn flex items-center gap-2 z-50 shadow-xl border-2 border-gray-500 bg-gray-900 md:absolute md:bottom-3 md:right-4">
+          <img src="icons/ui/ship.png" class="w-5 h-5 object-contain"> Bateaux
+        </button>
+      </div>
+  
+      <!-- Ligne 2 : Progression (Centre) -->
+      <div class="flex justify-center mt-1 w-full pb-2">
+        <div class="w-full md:w-1/2 px-4">
+          <div class="w-full bg-black/30 h-4 rounded-full overflow-hidden border border-white/20">
+            <div id="progressBar" class="h-full rounded-full bg-gradient"></div>
+          </div>
+          <p id="progressLabel" class="text-sm text-gray-300 mt-1 text-center">0/0 (0%)</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Modal Artwork -->
+  <div id="artworkModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden" style="z-index: 100;">
+    <!-- Conteneur scrollable pour les images -->
+    <div id="artworkContainer" class="flex gap-4 overflow-x-auto p-4 max-w-full max-h-full items-center">
+      <!-- Les images seront injectées ici par JS -->
+    </div>
+  </div>
+
+  <!-- Modal Manager (Gestion Complète) -->
+  <div id="managerModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center hidden">
+    <div id="managerContent" class="manager-content w-full max-w-2xl rounded-lg p-6 relative bg-gray-800 text-white">
+      <!-- Le contenu sera injecté par JS -->
+    </div>
+  </div>
+
+  <!-- Modal Filtres (Grand format) -->
+  <div id="filterModal" class="fixed inset-0 modal-backdrop-custom flex items-center justify-center hidden" style="z-index: 200;">
+    <div id="filterContent" class="manager-content w-full max-w-5xl rounded-lg relative bg-gray-800 text-white max-h-[90vh]" style="background: #1f2937;">
+      <!-- Contenu injecté par JS -->
+    </div>
+  </div>
+
+  <!-- Grille des personnages -->
+  <main id="unit-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 px-4"></main>
+
+  <footer class="mt-8 text-center text-sm text-white-500 px-4">
+    © <script>document.write(new Date().getFullYear());</script> OPTC Box Manager – Créé par Amnael.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/units.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dropdowns = [
+        ["dropdownMenuBtn", "dropdownMenuContent"]
+      ];
+      dropdowns.forEach(([btnId, menuId]) => {
+        const btn = document.getElementById(btnId);
+        const menu = document.getElementById(menuId);
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isClosed = menu.classList.contains("hidden");
+          
+          // Ferme tous les menus pour éviter les superpositions et nettoyer les animations
+          dropdowns.forEach(([_, mId]) => {
+            const m = document.getElementById(mId);
+            m.classList.add("hidden");
+            m.classList.remove("slide-down");
+          });
+
+          if (isClosed) {
+            menu.classList.remove("hidden");
+            menu.classList.add("slide-down");
+          }
+        });
+        document.addEventListener("click", (event) => {
+          if (!btn.contains(event.target) && !menu.contains(event.target)) {
+            menu.classList.add("hidden");
+            menu.classList.remove("slide-down");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
