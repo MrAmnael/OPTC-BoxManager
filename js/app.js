@@ -867,10 +867,10 @@ function openManagerModal(id) {
           ${[1,2,3,4,5].map(i => `
             <div class="flex flex-col items-center bg-gray-900 p-2 rounded border border-gray-700">
               <div class="relative w-10 h-10 mb-2 cursor-pointer hover:scale-110 transition" onclick="openSocketSelector(${i})">
-                <img src="icons/Pouvoirs/${s[`socket${i}Type`] || 'vide'}.png" 
+                <img src="/icons/Pouvoirs/${s[`socket${i}Type`] || 'vide'}.png" 
                      id="mgr_sockImg${i}"
                      class="w-full h-full object-contain" 
-                     onerror="this.src='icons/Pouvoirs/vide.png'">
+                     onerror="this.src='/icons/Pouvoirs/vide.png'">
               </div>
               <input type="hidden" id="mgr_sockType${i}" value="${s[`socket${i}Type`] || ''}">
               <div class="relative w-full">
