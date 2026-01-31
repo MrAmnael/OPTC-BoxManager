@@ -709,7 +709,7 @@ const units = [
   {
     id: 65,
     name: "Barbe Blanche & Marco",
-    Recherche: "Barbe Blanche & Marco Skillah",
+    Recherche: "Barbe Blanche & Marco",
     attribute: "PSY & INT",
     rarity: "6+★",
     image: baseImageUrl + "065.png",
