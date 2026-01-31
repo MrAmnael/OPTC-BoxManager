@@ -88,7 +88,7 @@ const units = [
     image: baseImageUrl + "008.png",
     classes: ["Cogneur", "Libre"],
     categorie: ["Sugo Fest - Premium"],
-    potentials: ["Soin d'urgence", "Soin d'urgence", "Attaque critique"]
+    potentials: ["Soin d'urgence", "Soin impossible", "Attaque critique"]
   },
   {
     id: 9,
