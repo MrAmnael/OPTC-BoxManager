@@ -661,33 +661,39 @@ window.setLBSlider = function(level) {
   }
 }
 
-window.updateLBUI = function(val) {
-  const level = parseInt(val);
-  const display = document.getElementById('lb_level_display');
-  const slider = document.getElementById('mgr_lbLevel');
-  
-  if(display) {
-    display.textContent = (level === 40) ? "MAX" : "Lv. " + level;
-    display.style.color = (level >= 31) ? '#ff0000' : 'white';
-  }
-  
-  if(slider) {
-    const color = (level >= 31) ? '#ff0000' : '#ffa500';
-    const percent = (level / 40) * 100;
-    slider.style.background = `linear-gradient(to right, ${color} 0%, ${color} ${percent}%, #374151 ${percent}%, #374151 100%)`;
-    slider.style.accentColor = color;
-  }
+let lbAnimationFrame; // Variable pour gérer la fluidité
 
-  const milestones = [4, 15, 23, 27, 30, 31, 39];
-  milestones.forEach(m => {
-    const img = document.getElementById('lb_icon_' + m);
-    if(img) {
-      if(level >= m) {
-        img.classList.remove('opacity-30', 'grayscale');
-      } else {
-        img.classList.add('opacity-30', 'grayscale');
-      }
+window.updateLBUI = function(val) {
+  if (lbAnimationFrame) cancelAnimationFrame(lbAnimationFrame);
+
+  lbAnimationFrame = requestAnimationFrame(() => {
+    const level = parseInt(val);
+    const display = document.getElementById('lb_level_display');
+    const slider = document.getElementById('mgr_lbLevel');
+    
+    if(display) {
+      display.textContent = (level === 40) ? "MAX" : "Lv. " + level;
+      display.style.color = (level >= 31) ? '#ff0000' : 'white';
     }
+    
+    if(slider) {
+      const color = (level >= 31) ? '#ff0000' : '#ffa500';
+      const percent = (level / 40) * 100;
+      slider.style.background = `linear-gradient(to right, ${color} 0%, ${color} ${percent}%, #374151 ${percent}%, #374151 100%)`;
+      slider.style.accentColor = color;
+    }
+
+    const milestones = [4, 15, 23, 27, 30, 31, 39];
+    milestones.forEach(m => {
+      const img = document.getElementById('lb_icon_' + m);
+      if(img) {
+        if(level >= m) {
+          img.classList.remove('opacity-30', 'grayscale');
+        } else {
+          img.classList.add('opacity-30', 'grayscale');
+        }
+      }
+    });
   });
 }
 
