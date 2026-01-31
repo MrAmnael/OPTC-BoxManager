@@ -4402,6 +4402,17 @@ const units = [
     categorie: ["Sugo Fest - Premium"],
     potentials: ["Soin d'urgence", "Reduction des degats PSY", "Super Tandem Boost"]
   },
+  {
+    id: 401,
+    name: "Kujaku",
+    Recherche: "Kujaku",
+    attribute: "PSY",
+    rarity: "6★",
+    image: baseImageUrl + "401.png",
+    classes: ["Intellectuel", "Libre"],
+    categorie: ["Sugo Fest - PvP"],
+    potentials: ["Resistance a changement de cercles impossible", "Lien des cercles", "Reduction des degats INT"]
+  },
 ]
 
 const ships = [
