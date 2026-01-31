@@ -68,6 +68,7 @@ function openArtworkModal(id, customSrc) {
     img.src = src;
     // Style : hauteur max pour ne pas dépasser l'écran, arrondi, ombre
     img.className = "max-h-[90vh] rounded shadow-lg object-contain flex-shrink-0"; 
+    
     // Empêche la fermeture si on clique sur l'image elle-même
     img.addEventListener("click", (e) => e.stopPropagation());
     artworkContainer.appendChild(img);
@@ -543,6 +544,13 @@ function initModeButtons() {
     // Ajoute l'icône si elle existe, sinon juste le texte
     btn.innerHTML = (modeIcons[mode] ? `<img src="${modeIcons[mode]}" class="w-5 h-5 mr-2" onerror="this.style.display='none'"> ` : '') + text;
     
+    // ✅ FIX : Réapplique l'état grisé si le mode Artwork est actif lors de la création des boutons
+    if (artworkEnabled) {
+      btn.disabled = true;
+      btn.style.opacity = "0.5";
+      btn.style.cursor = "not-allowed";
+    }
+
     btn.onclick = null;
     btn.addEventListener("click", (e) => { 
       e.preventDefault(); 
