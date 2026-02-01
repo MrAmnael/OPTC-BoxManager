@@ -2392,7 +2392,7 @@ const units = [
   {
     id: 218,
     name: "Nami",
-    Recherche: "Nami",
+    Recherche: "Nami Eloulou",
     attribute: "PSY",
     rarity: "6★",
     image: baseImageUrl + "218.png",
