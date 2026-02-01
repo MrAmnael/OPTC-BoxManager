@@ -1,18 +1,18 @@
 {
-  "name": "OPTC Box Manager",
-  "short_name": "OPTC",
-  "start_url": ".",
+  "name": "OPTC - Box Manager",
+  "short_name": "OPTC Box",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#1f2937",
   "theme_color": "#1f2937",
   "icons": [
     {
-      "src": "icons/ui/icon.png",
+      "src": "icons/ui/icons.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/ui/icon.png",
+      "src": "icons/ui/icons.png",
       "sizes": "512x512",
       "type": "image/png"
     }
