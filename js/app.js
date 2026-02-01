@@ -410,7 +410,7 @@ function applyFilters() {
 function updateProgress() {
   const progressBar = document.getElementById("progressBar");
   const progressLabel = document.getElementById("progressLabel");
-  if (!progressBar || !progressLabel) return;
+  if (!progressBar) return;
 
   const data = currentView === "units" ? units : ships;
   const currentState = currentView === "units" ? state : shipState;
@@ -420,7 +420,7 @@ function updateProgress() {
   const percent = total > 0 ? Math.round((owned / total) * 100) : 0;
 
   progressBar.style.width = `${percent}%`;
-  progressLabel.textContent = `${owned}/${total} (${percent}%)`;
+  if (progressLabel) progressLabel.textContent = `${owned}/${total} (${percent}%)`;
 }
 
 // --- Boutons Système ---
@@ -822,7 +822,7 @@ function openManagerModal(id) {
                    <span style="display:none" class="text-sm text-gray-400 font-bold">${attr.trim()}</span>`
                 ).join('') 
                 : ''}
-              <p class="text-gray-300 font-bold text-lg">${currentView === "units" ? item.rarity : ""}</p>
+              <p class="text-gray-300 font-bold text-lg">${currentView === "units" ? (item.rarity || "").replace("★", "<span class='text-yellow-400'>★</span>") : ""}</p>
             </div>
             
             <!-- Classes -->
