@@ -2579,7 +2579,7 @@ const units = [
   {
     id: 235,
     name: "Zoro",
-    Recherche: "Zoro",
+    Recherche: "Zoro Cesarosama",
     attribute: "QCK",
     rarity: "6★",
     image: baseImageUrl + "235.png",
