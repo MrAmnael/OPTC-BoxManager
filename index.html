@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#1f2937">
   <link rel="icon" type="image/png" href="icons/ui/icon.png">
   <link rel="shortcut icon" type="image/png" href="icons/ui/icon.png">
+  <link rel="apple-touch-icon" href="icons/ui/icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
   <title>OPTC - Box Manager</title>
@@ -89,10 +91,21 @@
       <!-- Ligne 2 : Progression (Centre) -->
       <div class="flex justify-center mt-1 w-full pb-2">
         <div class="w-full md:w-1/2 px-4">
-          <div class="w-full bg-black/30 h-4 rounded-full overflow-hidden border border-white/20">
-            <div id="progressBar" class="h-full rounded-full bg-gradient"></div>
+          <div class="flex items-center relative">
+            <!-- 🏴‍☠️ Luffy (Début de la barre) -->
+            <img src="icons/Barre de Progression/Luffy.png" class="h-14 z-20 -mr-8 relative object-contain" alt="Luffy" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));">
+            
+            <!-- Conteneur de la barre (Le bras qui s'étire) -->
+            <div class="flex-1 bg-black/30 h-3 rounded-full border border-white/20 relative">
+              <div id="progressBar" class="h-full rounded-l-full relative" style="width: 0%;">
+                <!-- 👊 Le Poing (Curseur qui suit la progression) -->
+                <div class="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 z-30">
+                  <img src="icons/Barre de Progression/Poing.png" class="h-10 w-auto max-w-none object-contain" alt="Poing" style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));">
+                </div>
+              </div>
+            </div>
           </div>
-          <p id="progressLabel" class="text-sm text-gray-300 mt-1 text-center">0/0 (0%)</p>
+          <p id="progressLabel" class="text-sm text-gray-300 mt-3 text-center">0/0 (0%)</p>
         </div>
       </div>
     </div>
