@@ -702,7 +702,32 @@ window.updateLBUI = function(val) {
         }
       }
     });
+
+    // Sync Dropdown Limit Break (Stats tab) with Slider
+    const lbSelect = document.getElementById('mgr_lb');
+    if (lbSelect) {
+      if (level >= 40) lbSelect.value = 2;
+      else if (level >= 30) lbSelect.value = 1;
+      else lbSelect.value = 0;
+    }
   });
+}
+
+window.updateLBFromStats = function(select) {
+  const val = parseInt(select.value);
+  const slider = document.getElementById('mgr_lbLevel');
+  if (slider) {
+    if (val === 1) {
+      slider.value = 30;
+      updateLBUI(30);
+    } else if (val === 2) {
+      slider.value = 40;
+      updateLBUI(40);
+    } else if (val === 0) {
+      slider.value = 0;
+      updateLBUI(0);
+    }
+  }
 }
 
 function openManagerModal(id) {
@@ -855,7 +880,7 @@ function openManagerModal(id) {
             </div>
           </div>
           <div><span class="manager-label">Limit Break</span>
-            <select id="mgr_lb" class="manager-input">
+            <select id="mgr_lb" class="manager-input" onchange="updateLBFromStats(this)">
               <option value="0" ${s.lb == 0 ? "selected" : ""}>Aucun</option>
               <option value="1" ${s.lb == 1 ? "selected" : ""}>Max LB</option>
               <option value="2" ${s.lb == 2 ? "selected" : ""}>Max LB+</option>
