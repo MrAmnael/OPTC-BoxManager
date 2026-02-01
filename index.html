@@ -26,7 +26,7 @@
   <header id="main-header" class="sticky top-0 z-50 mb-6">
     <div class="w-full px-4 py-2 relative">
       <!-- Ligne 1 : Logo, Recherche, Boutons -->
-      <div class="header-grid-layout mb-2">
+      <div class="header-grid-layout mb-1">
         
         <!-- Gauche : Logo + Recherche -->
         <div class="flex items-center gap-4 justify-start">
@@ -76,20 +76,16 @@
       </div>
 
       <!-- Ligne 1.5 : Boutons de mode centrés -->
-      <div class="flex flex-wrap justify-center items-center gap-2 mt-6 mb-5">
+      <div class="flex flex-wrap justify-center items-center gap-2 mt-2 mb-2">
         <div id="centered-mode-buttons" class="contents md:flex md:flex-wrap md:justify-center md:items-center md:gap-2">
           <button onclick="setMode('manager')" class="mode-button btn-manager unit-mode-btn text-white px-3 py-1 rounded transition">Mode Manager</button>
           <button onclick="setMode('simple')" class="mode-button btn-simple unit-mode-btn text-white px-3 py-1 rounded transition">Mode Reset</button>
         </div>
         <button id="toggleArtworkBtn" class="mode-button text-white px-3 py-1 rounded transition">Artwork OFF</button>
-        <!-- Bouton Bateaux (Mobile: Flow, Desktop: Absolute) -->
-        <button id="viewSwitchBtn" class="header-btn flex items-center gap-2 z-50 shadow-xl border-2 border-gray-500 bg-gray-900 md:absolute md:bottom-3 md:right-4">
-          <img src="icons/ui/ship.png" class="w-5 h-5 object-contain"> Bateaux
-        </button>
       </div>
   
       <!-- Ligne 2 : Progression (Centre) -->
-      <div class="flex justify-center mt-1 w-full pb-2">
+      <div class="flex justify-center mt-0 w-full pb-2 relative items-center flex-col md:flex-row">
         <div class="w-full md:w-1/2 px-4">
           <div class="flex items-center relative">
             <!-- 🏴‍☠️ Luffy (Début de la barre) -->
@@ -105,8 +101,11 @@
               </div>
             </div>
           </div>
-          <p id="progressLabel" class="text-sm text-gray-300 mt-3 text-center">0/0 (0%)</p>
         </div>
+        <!-- Bouton Bateaux (Aligné avec la barre) -->
+        <button id="viewSwitchBtn" class="header-btn flex items-center gap-2 z-50 shadow-xl border-2 border-gray-500 bg-gray-900 mt-2 md:mt-0 md:absolute md:right-0">
+          <img src="icons/ui/ship.png" class="w-5 h-5 object-contain"> Bateaux
+        </button>
       </div>
     </div>
   </header>
