@@ -1041,12 +1041,10 @@ function openManagerModal(id) {
 
   managerContent.innerHTML = html;
   managerModal.classList.remove("hidden");
-  document.body.classList.add('no-scroll');
 }
 
 function closeManagerModal() {
   managerModal.classList.add("hidden");
-  document.body.classList.remove('no-scroll');
 }
 
 function switchManagerTab(tabName) {
