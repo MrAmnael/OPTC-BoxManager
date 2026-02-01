@@ -111,8 +111,23 @@ function updateCardUI(id, cardElement = null) {
   const itemState = currentState[id] || { owned: false, ft: false, sft: false, spec: 0, max: false, level: 1, stats: 0 };
   
   // Synchronisation visuelle LB (Manager) <-> Rainbow/Super Rainbow
-  if (currentView === "units" && itemState.lb === 1) itemState.ft = true;
-  if (currentView === "units" && itemState.lb === 2) itemState.sft = true;
+  if (currentView === "units") {
+    const unitData = units.find(u => u.id === id);
+    const potCount = unitData?.potentials?.length || 0;
+    const p1 = itemState.pot1 || 0;
+    const p2 = itemState.pot2 || 0;
+    const p3 = itemState.pot3 || 0;
+    
+    let maxPots = false;
+    if (potCount > 0) {
+      maxPots = (p1 >= 5);
+      if (potCount >= 2) maxPots = maxPots && (p2 >= 5);
+      if (potCount >= 3) maxPots = maxPots && (p3 >= 5);
+    }
+
+    itemState.ft = (itemState.lb === 1 && maxPots);
+    itemState.sft = (itemState.lb === 2 && maxPots);
+  }
 
   card.classList.toggle('selected', !!itemState.owned);
   card.classList.toggle('ft', !!itemState.ft); // Rainbow (Unités)
@@ -1151,9 +1166,22 @@ function saveManagerData(id) {
     s.level = parseInt(document.getElementById("mgr_level").value) || 1;
     s.llb = parseInt(document.getElementById("mgr_llb").value) || 0;
     s.lb = parseInt(document.getElementById("mgr_lb").value) || 0;
-    // Sync visuel Rainbow/Super Rainbow selon LB
-    if (s.lb === 1) { s.ft = true; s.sft = false; }
-    else if (s.lb === 2) { s.ft = false; s.sft = true; }
+    
+    // Sync visuel Rainbow/Super Rainbow selon LB ET Potentiels
+    let maxPots = true;
+    const inp1 = document.getElementById("mgr_pot1");
+    const inp2 = document.getElementById("mgr_pot2");
+    const inp3 = document.getElementById("mgr_pot3");
+
+    if (!inp1) maxPots = false; // Pas de potentiels = pas de rainbow
+    else {
+      if ((parseInt(inp1.value) || 0) < 5) maxPots = false;
+      if (inp2 && (parseInt(inp2.value) || 0) < 5) maxPots = false;
+      if (inp3 && (parseInt(inp3.value) || 0) < 5) maxPots = false;
+    }
+
+    if (s.lb === 1 && maxPots) { s.ft = true; s.sft = false; }
+    else if (s.lb === 2 && maxPots) { s.ft = false; s.sft = true; }
     else { s.ft = false; s.sft = false; }
 
     s.ccHp = parseInt(document.getElementById("mgr_ccHp").value) || 0;
