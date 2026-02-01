@@ -741,7 +741,7 @@ function openManagerModal(id) {
     owned: false, ft: false, sft: false, spec: 0, max: false, level: 1, stats: 0, llb: 0,
     ccHp: 0, ccAtk: 0, ccRcv: 0, lb: 0, support: 0, pot1: 1, pot2: 1, pot3: 1,
     lbLevel: 0,
-    rumbleSpec: 0, rumbleAb: 0, rumbleRes: 0
+    rumbleSpec: 1, rumbleAb: 1, rumbleRes: 1
   };
 
   // Logique LLB -> Max Level
@@ -982,9 +982,9 @@ function openManagerModal(id) {
       <div id="tab-pvp" class="manager-tab-content hidden">
         <h3 class="text-blue-400 font-bold mb-2 text-sm uppercase">Pirate Rumble</h3>
         <div class="space-y-3">
-          <div><span class="manager-label">Coup spécial de la Fête des pirates</span><div class="relative"><input type="number" id="mgr_rumbleSpec" value="${s.rumbleSpec || 0}" min="0" max="10" ${onInputMax(10)} style="color: ${getMaxColor(s.rumbleSpec||0, 10)}" class="manager-input pr-12"></div></div>
-          <div><span class="manager-label">Capacité de la Fête des pirates</span><div class="relative"><input type="number" id="mgr_rumbleAb" value="${s.rumbleAb || 0}" min="0" max="5" ${onInputMax(5)} style="color: ${getMaxColor(s.rumbleAb||0, 5)}" class="manager-input pr-12"></div></div>
-          <div><span class="manager-label">Déchainement Grande Fête</span><div class="relative"><input type="number" id="mgr_rumbleRes" value="${s.rumbleRes || 0}" min="0" max="5" ${onInputMax(5)} style="color: ${getMaxColor(s.rumbleRes||0, 5)}" class="manager-input pr-12"></div></div>
+          <div><span class="manager-label">Coup spécial de la Fête des pirates</span><div class="relative"><input type="number" id="mgr_rumbleSpec" value="${s.rumbleSpec || 1}" min="1" max="10" ${onInputMax(10)} style="color: ${getMaxColor(s.rumbleSpec||1, 10)}" class="manager-input pr-12"></div></div>
+          <div><span class="manager-label">Capacité de la Fête des pirates</span><div class="relative"><input type="number" id="mgr_rumbleAb" value="${s.rumbleAb || 1}" min="1" max="5" ${onInputMax(5)} style="color: ${getMaxColor(s.rumbleAb||1, 5)}" class="manager-input pr-12"></div></div>
+          <div><span class="manager-label">Déchainement Grande Fête</span><div class="relative"><input type="number" id="mgr_rumbleRes" value="${s.rumbleRes || 1}" min="1" max="5" ${onInputMax(5)} style="color: ${getMaxColor(s.rumbleRes||1, 5)}" class="manager-input pr-12"></div></div>
         </div>
       </div>
     `;
@@ -1109,9 +1109,9 @@ function saveManagerData(id) {
       
       if ((parseInt(document.getElementById("mgr_lbLevel").value) || 0) > 0) isModified = true;
       
-      if ((parseInt(document.getElementById("mgr_rumbleSpec").value) || 0) > 0) isModified = true;
-      if ((parseInt(document.getElementById("mgr_rumbleAb").value) || 0) > 0) isModified = true;
-      if ((parseInt(document.getElementById("mgr_rumbleRes").value) || 0) > 0) isModified = true;
+      if ((parseInt(document.getElementById("mgr_rumbleSpec").value) || 1) > 1) isModified = true;
+      if ((parseInt(document.getElementById("mgr_rumbleAb").value) || 1) > 1) isModified = true;
+      if ((parseInt(document.getElementById("mgr_rumbleRes").value) || 1) > 1) isModified = true;
 
       // Sockets et Potentiels
       for(let i=1; i<=5; i++) { const el = document.getElementById(`mgr_sockType${i}`); if (el && el.value) isModified = true; }
@@ -1175,9 +1175,9 @@ function saveManagerData(id) {
     s.pot2 = document.getElementById("mgr_pot2") ? (parseInt(document.getElementById("mgr_pot2").value) || 0) : (s.pot2 || 0);
     s.pot3 = document.getElementById("mgr_pot3") ? (parseInt(document.getElementById("mgr_pot3").value) || 0) : (s.pot3 || 0);
     
-    s.rumbleSpec = parseInt(document.getElementById("mgr_rumbleSpec").value) || 0;
-    s.rumbleAb = parseInt(document.getElementById("mgr_rumbleAb").value) || 0;
-    s.rumbleRes = parseInt(document.getElementById("mgr_rumbleRes").value) || 0;
+    s.rumbleSpec = parseInt(document.getElementById("mgr_rumbleSpec").value) || 1;
+    s.rumbleAb = parseInt(document.getElementById("mgr_rumbleAb").value) || 1;
+    s.rumbleRes = parseInt(document.getElementById("mgr_rumbleRes").value) || 1;
 
     s.lbLevel = parseInt(document.getElementById("mgr_lbLevel").value) || 0;
   } else {
