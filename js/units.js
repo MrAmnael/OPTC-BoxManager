@@ -478,7 +478,7 @@ const units = [
   {
     id: 44,
     name: "Sabo",
-    Recherche: "Sabo",
+    Recherche: "Sabo WerphinS",
     attribute: "QCK",
     rarity: "6+★",
     image: baseImageUrl + "044.png",
