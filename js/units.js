@@ -3443,7 +3443,7 @@ const units = [
     image: baseImageUrl + "313.png",
     classes: ["Cogneur", "Libre"],
     categorie: ["Sugo Fest - Premium"],
-    potentials: ["Soin d'urgence", "Soin d'urgence", "Super Tandem"]
+    potentials: ["Soin impossible", "Soin d'urgence", "Super Tandem"]
   },
   {
     id: 314,
