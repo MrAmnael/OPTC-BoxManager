@@ -496,7 +496,7 @@ function toggleView() {
   // Afficher/cacher le bouton de filtre principal
   if (filterBtn) {
     // Utilisation de visibility pour conserver l'espace et éviter que le bouton Menu ne bouge
-    filterBtn.style.visibility = currentView === 'units' ? 'visible' : 'hidden';
+    filterBtn.style.visibility = 'visible';
   }
 }
 
@@ -1288,10 +1288,12 @@ function openFilterModal() {
   `;
 
   fullHTML += createFilterSection('Possession', [], 'owned', ownedFilter);
-  fullHTML += createFilterSection('Affinités', attributes, 'attribute', attributeFilter);
-  fullHTML += createFilterSection('Classes', classes, 'class', classFilter);
-  fullHTML += createFilterSection('Catégories', categories, 'category', categoryFilter);
-  fullHTML += createFilterSection('Potentiels', potentials, 'potential', potentialFilter);
+  if (currentView === "units") {
+    fullHTML += createFilterSection('Affinités', attributes, 'attribute', attributeFilter);
+    fullHTML += createFilterSection('Classes', classes, 'class', classFilter);
+    fullHTML += createFilterSection('Catégories', categories, 'category', categoryFilter);
+    fullHTML += createFilterSection('Potentiels', potentials, 'potential', potentialFilter);
+  }
 
   fullHTML += `</div>`; // Fin du contenu défilant
 
@@ -1437,7 +1439,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (btn) btn.innerHTML = '<img src="icons/ui/units.png" class="w-5 h-5 object-contain"> Unités';
     if (iconUnits) iconUnits.classList.add("hidden");
     if (iconShip) iconShip.classList.remove("hidden");
-    if (filterBtn) filterBtn.style.visibility = 'hidden';
   }
   updateModeButtons();
 
