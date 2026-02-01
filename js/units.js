@@ -962,7 +962,7 @@ const units = [
   {
     id: 88,
     name: "Bullet",
-    Recherche: "Bullet",
+    Recherche: "Bullet Chgrand",
     attribute: "STR",
     rarity: "6+★",
     image: baseImageUrl + "088.png",
