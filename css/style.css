@@ -662,9 +662,7 @@ body > * {
 
 /* ✅ Modal Backdrop Custom (Moins flou) */
 .modal-backdrop-custom {
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 /* ✅ Texte Arc-en-ciel (Stats Bateaux) */
