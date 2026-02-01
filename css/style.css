@@ -292,14 +292,13 @@ body > * {
 
 /* ✅ Barre de progression */
 #progressBar {
-  height: 1rem;
-  border-radius: 0.5rem;
+  height: 100%;
+  border-radius: 0; /* Pas d'arrondi pour une connexion fluide avec Luffy */
   transition: width 0.8s ease-in-out;
-  background: linear-gradient(270deg, #a855f7, #7e22ce, #a855f7);
-  background-size: 600% 600%;
-  animation: gradientShift 3s ease infinite;
+  /* ⚫ Bras Haki (Busoshoku) : Noir métallique */
+  background: linear-gradient(to bottom, #4b5563 0%, #000000 45%, #000000 100%);
+  box-shadow: inset 0 1px 3px rgba(255,255,255,0.3), inset 0 -1px 3px rgba(0,0,0,0.5);
 }
-@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
 /* ✅ Dropdowns */
 #dropdownFilterBtn, #dropdownAttributeBtn { background-color: #4b5563; color: white; }
@@ -683,4 +682,20 @@ body > * {
 /* ✅ Bloque le scroll du site quand une modale est ouverte */
 body.no-scroll {
   overflow: hidden !important;
+}
+
+/* ✅ Scrollbar Personnalisée (Filtres, etc.) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4f46e5; /* Indigo pour matcher le thème */
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #6366f1;
 }
