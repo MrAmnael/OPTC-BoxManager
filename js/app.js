@@ -1041,10 +1041,12 @@ function openManagerModal(id) {
 
   managerContent.innerHTML = html;
   managerModal.classList.remove("hidden");
+  document.body.classList.add('no-scroll');
 }
 
 function closeManagerModal() {
   managerModal.classList.add("hidden");
+  document.body.classList.remove('no-scroll');
 }
 
 function switchManagerTab(tabName) {
@@ -1284,7 +1286,7 @@ function openFilterModal() {
       </h2>
       <button onclick="closeFilterModal()" class="text-gray-400 hover:text-white text-4xl">&times;</button>
     </div>
-    <div class="space-y-6 overflow-y-auto p-2 md:p-6 flex-1 min-h-0" style="overscroll-behavior: contain;">
+    <div class="space-y-6 overflow-y-auto p-2 md:p-6 flex-1 min-h-0 custom-scrollbar" style="overscroll-behavior: contain;">
   `;
 
   fullHTML += createFilterSection('Possession', [], 'owned', ownedFilter);
@@ -1444,14 +1446,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // 4. Recherche
   const searchInput = document.getElementById("search-input");
-  let debounceTimer;
   if (searchInput) {
-    searchInput.addEventListener("input", e => { 
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        searchTerm = e.target.value; 
-        applyFilters(); 
-      }, 300);
+    searchInput.addEventListener("input", e => {
+      searchTerm = e.target.value;
+      applyFilters();
     });
   }
 
