@@ -172,7 +172,7 @@ function updateCardUI(id, cardElement = null) {
       const lvl = itemState.level || 1;
       levelBadge.textContent = `Lv.${lvl}`;
 
-      const maxLevels = [99, 105, 110, 115, 120, 150];
+      const maxLevels = [99, 105, 110, 120, 130, 150];
       const currentMaxLv = maxLevels[itemState.llb || 0] || 99;
 
       if (lvl === 150) {
@@ -745,7 +745,7 @@ function openManagerModal(id) {
   };
 
   // Logique LLB -> Max Level
-  const maxLevels = [99, 105, 110, 115, 120, 150];
+  const maxLevels = [99, 105, 110, 120, 130, 150];
   const currentMaxLv = maxLevels[s.llb || 0];
 
   // Helper pour la couleur du texte (Orange si MAX)
@@ -766,7 +766,7 @@ function openManagerModal(id) {
 
   // Script spécifique pour mettre à jour le niveau max quand on change le LLB
   window.updateLevelMax = function(select) {
-    const maxLevels = [99, 105, 110, 115, 120, 150];
+    const maxLevels = [99, 105, 110, 120, 130, 150];
     const newMax = maxLevels[parseInt(select.value)] || 99;
     const lvlInput = document.getElementById('mgr_level');
     lvlInput.max = newMax;
@@ -868,8 +868,8 @@ function openManagerModal(id) {
               <option value="0" ${s.llb == 0 ? "selected" : ""}>LLB 0 (Max 99)</option>
               <option value="1" ${s.llb == 1 ? "selected" : ""}>LLB 1 (Max 105)</option>
               <option value="2" ${s.llb == 2 ? "selected" : ""}>LLB 2 (Max 110)</option>
-              <option value="3" ${s.llb == 3 ? "selected" : ""}>LLB 3 (Max 115)</option>
-              <option value="4" ${s.llb == 4 ? "selected" : ""}>LLB 4 (Max 120)</option>
+              <option value="3" ${s.llb == 3 ? "selected" : ""}>LLB 3 (Max 120)</option>
+              <option value="4" ${s.llb == 4 ? "selected" : ""}>LLB 4 (Max 130)</option>
               <option value="5" ${s.llb == 5 ? "selected" : ""}>LLB 5 (Max 150)</option>
             </select>
           </div>
