@@ -831,13 +831,15 @@ function openManagerModal(id) {
             <div class="flex flex-col gap-2">
               <!-- Attributs & Rareté -->
               <div class="flex items-center gap-2">
-              ${currentView === "units" && item.attribute ? 
-                item.attribute.split(' & ').map(attr => 
-                  `<img src="icons/types/${attr.trim()}.png" class="w-8 h-8 object-contain" title="${attr.trim()}" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
-                   <span style="display:none" class="text-sm text-gray-400 font-bold">${attr.trim()}</span>`
-                ).join('') 
-                : ''}
-              <p class="text-gray-300 font-bold text-lg">${currentView === "units" ? (item.rarity || "").replace("★", "<span class='text-yellow-400'>★</span>") : ""}</p>
+                <div class="flex items-center gap-0.5">
+                  ${currentView === "units" && item.attribute ? 
+                    item.attribute.split(' & ').map(attr => 
+                      `<img src="icons/types/${attr.trim()}.png" class="w-8 h-8 object-contain" title="${attr.trim()}" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+                       <span style="display:none" class="text-sm text-gray-400 font-bold">${attr.trim()}</span>`
+                    ).join('') 
+                    : ''}
+                </div>
+              <p class="text-gray-300 font-bold text-lg">${currentView === "units" ? (item.rarity || "").replace("★", (item.rarity === "6★" ? "<span class='text-yellow-400 ml-1'>★</span>" : "<span class='text-yellow-400'>★</span>")) : ""}</p>
             </div>
             
             <!-- Classes -->
