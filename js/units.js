@@ -1824,9 +1824,9 @@ const units = [
     attribute: "STR & QCK",
     rarity: "6★",
     image: baseImageUrl + "166.png",
-    classes: ["EXEMPLE", "EXEMPLE"],
+    classes: ["Tenace", "Ambitieux"],
     categorie: ["Sugo Fest - Premium"],
-    potentials: ["EXEMPLE", "EXEMPLE", "EXEMPLE"]
+    potentials: ["Attaque critique", "Augmentation d'ATK en cas de degats subis et de resistance au augmentations de degats", "Lien des cercles"]
   },
   {
     id: 167,
@@ -2317,7 +2317,7 @@ const units = [
     name: "Zoro",
     Recherche: "Zoro",
     attribute: "DEX",
-    rarity: "6+★",
+    rarity: "6★",
     image: baseImageUrl + "211.png",
     classes: ["Sabreur", "Libre"],
     categorie: ["Sugo Fest - Anniversaire"],
@@ -3199,7 +3199,7 @@ const units = [
     attribute: "DEX",
     rarity: "6★",
     image: baseImageUrl + "291.png",
-    classes: ["Tireur", "EXEMLibrePLE"],
+    classes: ["Tireur", "Libre"],
     categorie: ["Sugo Fest - Super"],
     potentials: ["Augmentation d'ATK en cas de degats subis et de resistance au augmentations de degats", "Transpercement des barrieres", "Rush"]
   },
@@ -4413,14 +4413,14 @@ const units = [
     categorie: ["Sugo Fest - PvP"],
     potentials: ["Resistance a changement de cercles impossible", "Lien des cercles", "Reduction des degats INT"]
   },
-   {
+  {
     id: 402,
     name: "Rebecca",
     Recherche: "Rebecca",
     attribute: "QCK",
     rarity: "6★",
     image: baseImageUrl + "402.png",
-    classes: ["Libre", "Cogneur"],
+    classes: ["Libre","Cogneur"],
     categorie: ["Sugo Fest - TM"],
     potentials: ["Soin d'urgence", "Reduction des degats STR", "Soin impossible"]
   },
