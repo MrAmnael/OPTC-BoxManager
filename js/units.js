@@ -4413,6 +4413,17 @@ const units = [
     categorie: ["Sugo Fest - PvP"],
     potentials: ["Resistance a changement de cercles impossible", "Lien des cercles", "Reduction des degats INT"]
   },
+   {
+    id: 402,
+    name: "Rebecca",
+    Recherche: "Rebecca",
+    attribute: "QCK",
+    rarity: "6★",
+    image: baseImageUrl + "402.png",
+    classes: ["Libre", "Cogneur"],
+    categorie: ["Sugo Fest - TM"],
+    potentials: ["Soin d'urgence", "Reduction des degats STR", "Soin impossible"]
+  },
 ]
 
 const ships = [
