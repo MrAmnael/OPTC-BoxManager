@@ -4424,6 +4424,17 @@ const units = [
     categorie: ["Sugo Fest - TM"],
     potentials: ["Soin d'urgence", "Reduction des degats STR", "Soin impossible"]
   },
+  {
+    id: 403,
+    name: "Shinobu Et O-tama",
+    Recherche: "Shinobu Et O-tama",
+    attribute: "STR",
+    rarity: "6★",
+    image: baseImageUrl + "403.png",
+    classes: ["Libre","Sabreur"],
+    categorie: ["Sugo Fest - Kizuna"],
+    potentials: ["Depassement de limite de Degats - Type", "Attaque critique", "Transpercement des barrieres"]
+  },
 ]
 
 const ships = [
